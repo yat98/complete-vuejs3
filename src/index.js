@@ -8,17 +8,21 @@ const app = Vue.createApp({
         {{ number }} 
       </div>
     </div>
-    <input type="text" :value="value" 
-      @input="input"/>
+    <input type="text" v-model="value"/>
+    <br>
+    <input type="radio" value="a" v-model="value"/>
+    <input type="radio" value="b" v-model="value"/>
+    <br>
+    <input type="checkbox" value="a" v-model="value"/>
+    <input type="checkbox" value="b" v-model="value"/>
+    <br>
+    {{ value }}
     <br>
     <div class="red">
       {{ error }}
     </div>`,
 
   methods: {
-    input(event) {
-      this.value = event.target.value
-    },
     getClass(number) {
       return this.isEven(number) ? 'blue' : 'red'
     },
@@ -44,7 +48,7 @@ const app = Vue.createApp({
   data() {
     return {
       count: 0,
-      value: 'user',
+      value: ['a'],
       numbers: [1,2,3,4,5,6,7,8,9,10],
     }
   },
