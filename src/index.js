@@ -3,13 +3,16 @@ const app = Vue.createApp({
   template: `
     <button v-on:click="increment">Increment</button>
     <p>{{ count }}</p>
-    <div v-for="number in evenList">
-      <div>
+    <div v-for="number in numbers">
+      <div :class="getClass(number)">
         {{ number }} 
       </div>
     </div>`,
 
   methods: {
+    getClass(number) {
+      return this.isEven(number) ? 'blue' : 'red'
+    },
     increment() {
       this.count += 1
     },
