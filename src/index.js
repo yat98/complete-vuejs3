@@ -2,25 +2,41 @@ import * as Vue from 'vue/dist/vue.esm-bundler.js'
 
 
 const Hello = {
-  template: `<p>Hello</p>`
+  props: ['greeting'],
+  template: `<p>{{ greeting }}</p>`
+}
+
+const Number = {
+  props: ['number'],
+  template: `
+    <div :class="getClass(number)">
+      {{ number }}
+    </div>`,
+  methods: {
+    getClass(number) {
+      return this.isEven(number) ? 'blue' : 'red'
+    },
+
+    isEven(number) {
+      return number % 2 === 0
+    }
+  }
 }
 
 const app = Vue.createApp({
   components: {
-    Hello
+    Hello,
+    Number
   },
   template: `
-    <Hello />
-    <Hello />
-    <Hello />
-    <Hello />
+    <Hello :greeting="'Halo'"/>
+    <Hello greeting="Hello"/>
+    <Hello greeting="Hi"/>
+    
     <button v-on:click="increment">Increment</button>
     <p>{{ count }}</p>
-    <div v-for="number in numbers">
-      <div :class="getClass(number)">
-        {{ number }} 
-      </div>
-    </div>
+    <Number  v-for="number in numbers"
+      :number="number" />
     <input type="text" v-model="value"/>
     <br>
     <input type="radio" value="a" v-model="value"/>
@@ -36,15 +52,9 @@ const app = Vue.createApp({
     </div>`,
 
   methods: {
-    getClass(number) {
-      return this.isEven(number) ? 'blue' : 'red'
-    },
     increment() {
       this.count += 1
     },
-    isEven(number) {
-      return number % 2 === 0
-    }
   },
 
   computed: {
