@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "form-validation": "vite --config vite.config.js form-validation/"    
+    "form-validation": "vite --host --config vite.config.js form-validation/"    
   },
   "dependencies": {
     "@vue/compiler-sfc": "^3.2.45",
