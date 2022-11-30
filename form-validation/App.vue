@@ -1,8 +1,10 @@
 <script setup>
 import MyButton from './MyButton.vue'
+import MyInput from './MyInput.vue'
 </script>
 
 <template>
+  <MyInput name="Username"/>
   <MyButton 
     background="darkslateblue"
     color="white"
@@ -13,7 +15,8 @@ import MyButton from './MyButton.vue'
 <script>
 export default {
   components: {
-    MyButton
+    MyButton,
+    MyInput
   },
   data() {
     return {
