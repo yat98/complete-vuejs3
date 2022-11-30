@@ -7,7 +7,8 @@
   <input 
     type="text" 
     :id="name"
-    v-model="value"
+    :value="value"
+    @input="input"
   >
 </template>
 
@@ -18,16 +19,27 @@ export default {
       type: String,
       required: true
     },
+    value: {
+      type: String,
+      required: true
+    },
     rules: {
       type: Object,
       default: {}
     }
   },
-  data (){
-    return {
-      value: ''
-    }
+
+  emits: ['update'],
+
+  methods: {
+    input(event) {
+      this.$emit('update',{
+        name: this.name.toLowerCase(),
+        value: event.target.value
+      })
+    },
   },
+
   computed: {
     error() {
       if(this.rules.required && this.value.length == 0){
