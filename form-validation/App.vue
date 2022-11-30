@@ -4,7 +4,13 @@ import MyInput from './MyInput.vue'
 </script>
 
 <template>
-  <MyInput name="Username"/>
+  <div class="input-wrapper">
+    <MyInput 
+      name="Username"
+      :rules="{ required: true, min: 5 }"
+    />
+  </div>
+  <br>
   <MyButton 
     background="darkslateblue"
     color="white"
@@ -27,4 +33,7 @@ export default {
 </script>
 
 <style scoped>
+.input-wrapper{
+  display: inline-block;
+}
 </style>
