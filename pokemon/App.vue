@@ -1,36 +1,12 @@
 <script setup>
-import Card from "./Card.vue";
+import PokemonCard from "./PokemonCard.vue";
 </script>
 
 <template>
-  <div class="cards">
-    <Card v-for="pokemon in pokemons" :pokemon="pokemon" :key="pokemon.id"
-      @click="fetchEvolutions(pokemon)"
-      :class="{ opace: pokemon.id !== selectedId }"
-      class="card">
-      <template #title>{{ pokemon.name }}</template>
-      <template #content>
-        <img :src="pokemon.sprite" />
-      </template>
-      <template #description>
-        <div v-for="pokemonType in pokemon.types" :key="pokemonType">
-          {{ pokemonType }}
-        </div>
-      </template>
-    </Card>
-
-    <Card v-for="pokemon in evolutions" :pokemon="pokemon" :key="pokemon.id">
-      <template #title>{{ pokemon.name }}</template>
-      <template #content>
-        <img :src="pokemon.sprite" />
-      </template>
-      <template #description>
-        <div v-for="pokemonType in pokemon.types" :key="pokemonType">
-          {{ pokemonType }}
-        </div>
-      </template>
-    </Card>
-  </div>
+  <PokemonCard :pokemons="pokemons" 
+    @chosen="fetchEvolutions"
+    :selectedId="selectedId"/>
+  <PokemonCard :pokemons="evolutions"/>
 </template>
 
 <script>
@@ -39,7 +15,7 @@ const IDS = [1, 4, 7, 10, 13, 16];
 
 export default {
   components: {
-    Card,
+    PokemonCard,
   },
 
   data() {
@@ -80,16 +56,4 @@ export default {
 </script>
 
 <style scoped>
-.opace {
-  opacity: .5;
-}
-.card:hover {
-  opacity: 1;
-}
-.cards {
-  display: flex;
-}
-img {
-  width: 100%;
-}
 </style>

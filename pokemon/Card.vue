@@ -13,14 +13,7 @@
 </template>
 
 <script>
-export default {
-  props: {
-    pokemon: {
-      type: Object,
-      required: true
-    }
-  },
-};
+export default {};
 </script>
 
 <style scoped>
