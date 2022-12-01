@@ -3,11 +3,33 @@
     <div class="title">Title</div>
     <div class="content">Content</div>
     <div class="description">Description</div>
+    <button @click="fetchData">Fetch</button>
   </div>
 </template>
 
 <script>
-export default {};
+const api = 'https://pokeapi.co/api/v2/pokemon'
+
+export default {
+  data() {
+    return {
+      pokemon: null
+    }
+  },
+  methods: {
+    async fetchData() {
+      await window.fetch(`${api}/1`)
+        .then(result => result.json())
+        .then(response => this.pokemon = {
+          id: response.id,
+          name: response.name,
+          sprite: response.sprites.other['official-artwork'].front_default,
+          types: response.types.map(type => type.type.name)
+        })
+      console.log(this.pokemon)
+    }
+  }
+};
 </script>
 
 <style scoped>
