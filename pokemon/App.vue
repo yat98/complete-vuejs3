@@ -1,44 +1,62 @@
 <template>
-  <div class="card">
-    <div class="title">Title</div>
-    <div class="content">Content</div>
-    <div class="description">Description</div>
+  <div class="cards">
+    <div class="card" v-for="pokemon in pokemons" :key="pokemon.id">
+      <div class="title">
+        {{ pokemon.name }}
+      </div>
+      <div class="content">
+        <img :src="pokemon.sprite" />
+      </div>
+      <div class="description">
+        <div v-for="type in pokemon.types" :key="type">
+          {{ type }}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-const api = 'https://pokeapi.co/api/v2/pokemon'
-const ids = [1, 4, 7]
+const api = "https://pokeapi.co/api/v2/pokemon";
+const ids = [1, 4, 7];
 
 export default {
   data() {
     return {
-      pokemon: []
-    }
+      pokemons: [],
+    };
   },
 
   created() {
-    this.fetchData()
+    this.fetchData();
   },
 
   methods: {
     async fetchData() {
-      const responses = await Promise.all(ids.map(id =>  window.fetch(`${api}/${id}`)))
+      const responses = await Promise.all(
+        ids.map((id) => window.fetch(`${api}/${id}`))
+      );
       const json = await Promise.all(
-        responses.map(response => response.json())
-      )
-      this.pokemon = json.map(data => ({
+        responses.map((response) => response.json())
+      );
+      this.pokemons = json.map((data) => ({
         id: data.id,
         name: data.name,
-        sprite: data.sprites.other['official-artwork'].front_default,
-        types: data.types.map(type => type.type.name)
-      }))
-    }
-  }
+        sprite: data.sprites.other["official-artwork"].front_default,
+        types: data.types.map((type) => type.type.name),
+      }));
+    },
+  },
 };
 </script>
 
 <style scoped>
+.cards{
+  display:flex;
+}
+img {
+  width: 100%;
+}
 .card {
   border: 1px solid silver;
   border-radius: 8px;
