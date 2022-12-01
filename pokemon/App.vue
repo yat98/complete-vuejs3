@@ -5,7 +5,9 @@ import Card from "./Card.vue";
 <template>
   <div class="cards">
     <Card v-for="pokemon in pokemons" :pokemon="pokemon" :key="pokemon.id"
-      @click="fetchEvolutions(pokemon)">
+      @click="fetchEvolutions(pokemon)"
+      :class="{ opace: pokemon.id !== selectedId }"
+      class="card">
       <template #title>{{ pokemon.name }}</template>
       <template #content>
         <img :src="pokemon.sprite" />
@@ -44,6 +46,7 @@ export default {
     return {
       pokemons: [],
       evolutions: [],
+      selectedId: null
     };
   },
 
@@ -70,12 +73,19 @@ export default {
       this.evolutions = await this.fetchData(
         [pokemon.id + 1, pokemon.id + 2]
       )
+      this.selectedId = pokemon.id
     }
   },
 };
 </script>
 
 <style scoped>
+.opace {
+  opacity: .5;
+}
+.card:hover {
+  opacity: 1;
+}
 .cards {
   display: flex;
 }
