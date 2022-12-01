@@ -1,18 +1,20 @@
+<script setup>
+import Card from "./Card.vue";
+</script>
+
 <template>
   <div class="cards">
-    <div class="card" v-for="pokemon in pokemons" :key="pokemon.id">
-      <div class="title">
-        {{ pokemon.name }}
-      </div>
-      <div class="content">
+    <Card v-for="pokemon in pokemons" :pokemon="pokemon" :key="pokemon.id">
+      <template #title>{{ pokemon.name }}</template>
+      <template #content>
         <img :src="pokemon.sprite" />
-      </div>
-      <div class="description">
-        <div v-for="type in pokemon.types" :key="type">
-          {{ type }}
+      </template>
+      <template #description>
+        <div v-for="pokemonType in pokemon.types" :key="pokemonType">
+          {{ pokemonType }}
         </div>
-      </div>
-    </div>
+      </template>
+    </Card>
   </div>
 </template>
 
@@ -21,6 +23,10 @@ const api = "https://pokeapi.co/api/v2/pokemon";
 const ids = [1, 4, 7];
 
 export default {
+  components: {
+    Card,
+  },
+
   data() {
     return {
       pokemons: [],
@@ -51,37 +57,10 @@ export default {
 </script>
 
 <style scoped>
-.cards{
-  display:flex;
+.cards {
+  display: flex;
 }
 img {
   width: 100%;
-}
-.card {
-  border: 1px solid silver;
-  border-radius: 8px;
-  max-width: 200px;
-  margin: 0 5px;
-  cursor: pointer;
-  box-shadow: 0px 1px 3px darkgrey;
-  transition: 0.2s;
-}
-.title,
-.content,
-.description {
-  padding: 16px;
-  text-transform: capitalize;
-  text-align: center;
-}
-.title,
-.content {
-  border-bottom: 1px solid silver;
-}
-.title {
-  font-size: 1.25em;
-}
-.card:hover {
-  transition: 0.2s;
-  box-shadow: 0px 1px 9px darkgrey;
 }
 </style>
