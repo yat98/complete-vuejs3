@@ -4,7 +4,7 @@ import MyInput from "./MyInput.vue";
 </script>
 
 <template>
-  <div>
+  <form @submit.prevent="submit">
     <div class="input-wrapper">
       <MyInput
         name="Username"
@@ -18,14 +18,16 @@ import MyInput from "./MyInput.vue";
     <div class="input-wrapper">
       <MyInput
         name="Password"
+        type="password"
         :rules="{ required: true, min: 10 }"
         :value="password.value"
         :error="password.error"
         @update="update"
       />
     </div>
-  </div>
-  <MyButton background="darkslateblue" color="white" :disabled="!valid" />
+    <br>
+    <MyButton background="darkslateblue" color="white" :disabled="!valid" />
+  </form>
 </template>
 
 <script>
@@ -37,7 +39,6 @@ export default {
 
   data() {
     return {
-      valid: true,
       username: {
         value: "user",
         error: '',
@@ -49,11 +50,23 @@ export default {
     };
   },
 
+  computed: {
+    valid() {
+      return (
+        !this.username.error && 
+        !this.password.error
+      )
+    }
+  },
+
   methods: {
     update({ name, value, error }) {
       this[name].value = value;
       this[name].error = error;
     },
+    submit() {
+      console.log(`Event`)
+    }
   },
 };
 </script>

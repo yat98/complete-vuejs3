@@ -5,7 +5,7 @@
       <div class="error">{{ error }}</div>
   </div>
   <input 
-    type="text" 
+    :type="type" 
     :id="name"
     :value="value"
     @input="input"
@@ -15,6 +15,10 @@
 <script>
 export default {
   props: {
+    type: {
+      type: String,
+      default: 'text'
+    },
     name: {
       type: String,
       required: true
