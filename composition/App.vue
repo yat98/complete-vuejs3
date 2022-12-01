@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch, watchEffect } from "vue";
 
 export default {
   setup() {
@@ -32,6 +32,20 @@ export default {
     }
 
     const total = computed(() => numbers.a + numbers.b + count.value)
+
+    watch(numbers, newVal => {
+      console.log(`a: ${newVal.a}, b: ${newVal.b}`)
+    },{
+      immediate: true
+    })
+
+    watch(count, newVal => {
+      console.log(`count: ${newVal}`)
+    })
+
+    watchEffect(() => {
+      console.log(`From watchEffect a: ${numbers.a}, b: ${numbers.b}`)
+    })
 
     return {
       msg,
