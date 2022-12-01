@@ -3,7 +3,6 @@
     <div class="title">Title</div>
     <div class="content">Content</div>
     <div class="description">Description</div>
-    <button @click="fetchData">Fetch</button>
   </div>
 </template>
 
@@ -17,6 +16,11 @@ export default {
       pokemon: []
     }
   },
+
+  created() {
+    this.fetchData()
+  },
+
   methods: {
     async fetchData() {
       const responses = await Promise.all(ids.map(id =>  window.fetch(`${api}/${id}`)))
@@ -29,7 +33,6 @@ export default {
         sprite: data.sprites.other['official-artwork'].front_default,
         types: data.types.map(type => type.type.name)
       }))
-      console.log(this.pokemon)
     }
   }
 };
