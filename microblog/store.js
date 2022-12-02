@@ -7,7 +7,13 @@ class Store{
         {
           id: 1,
           title: 'Reactive',
-          content: 'Learn vue.js'
+          content: 'Learn vue.js',
+          likes: 10,
+          hashtags: [
+            'vue',
+            'javascript',
+            'composition api',
+          ]
         }
       ]
     })
