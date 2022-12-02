@@ -3,8 +3,13 @@ import { testPosts } from "./testPosts";
 class Store{
   constructor() {
     this.state = reactive({
-      posts: testPosts
+      posts: testPosts,
+      currentTag: null
     })
+  }
+
+  setHashtag(hashtag) {
+    this.state.currentTag = hashtag
   }
 }
 

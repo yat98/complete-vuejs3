@@ -8,18 +8,18 @@
 </template>
 
 <script>
-export default {
-  emits: ['setHashtag'],
+import { store } from './store'
 
+export default {
   props: {
     hashtag: {
       type: String
     }
   },
 
-  setup(props,ctx) {
+  setup(props) {
     const setHashtag = () => {
-      ctx.emit('setHashtag',props.hashtag)
+      store.setHashtag(props.hashtag)
     }
 
     return {

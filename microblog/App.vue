@@ -10,10 +10,7 @@
       {{ post.content }}
     </template>
     <template #description>
-      <Controls 
-        :post="post"
-        @setHashtag="setHashtag"
-      />
+      <Controls :post="post"/>
     </template>
   </Card>
 </template>
@@ -21,7 +18,7 @@
 <script>
 import Card from './Card.vue'
 import Controls from './Controls.vue'
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { store } from "./store.js"
 
 export default {
@@ -30,23 +27,17 @@ export default {
     Controls
   },
   setup() {
-    const currentTag = ref('')
-
-    const setHashtag = (hashtag) => {
-      currentTag.value = hashtag
-    }
-
     const filteredPosts = computed(() => {
-      if(!currentTag.value){
+      if(!store.state.currentTag){
         return store.state.posts
       }
-
-      return store.state.posts.filter(post => post.hashtags.includes(currentTag.value))
+      
+      return store.state.posts.filter(post => post.hashtags.includes(store.state.currentTag))
+      
     })
 
     return {
       filteredPosts,
-      setHashtag,
     }
   }
 }
