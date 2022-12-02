@@ -1,19 +1,39 @@
 <template>
-  <div>
+  <div 
+    class="hashtag" 
+    @click="setHashtag"
+  >
     #{{ hashtag }}
   </div>
 </template>
 
 <script>
 export default {
+  emits: ['setHashtag'],
+
   props: {
     hashtag: {
       type: String
+    }
+  },
+
+  setup(props,ctx) {
+    const setHashtag = () => {
+      ctx.emit('setHashtag',props.hashtag)
+    }
+
+    return {
+      setHashtag
     }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+.hashtag {
+  text-decoration: underline; 
+}
+.hashtag:hover {
+  color: cornflowerblue;
+}
 </style>
