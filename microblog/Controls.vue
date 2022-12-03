@@ -1,5 +1,7 @@
 <template>
-  <button>Like</button>
+  <button
+    @click="click"
+  >Like</button>
   {{ post.likes }}
   <Hashtag 
     v-for="hashtag in post.hashtags" 
@@ -10,6 +12,7 @@
 </template>
 
 <script>
+import { store } from './store';
 import Hashtag from './Hashtag.vue';
 
 export default {
@@ -23,6 +26,16 @@ export default {
       required: true,
     }
   },
+
+  setup(props) {
+    const click = () => {
+      store.incrementLike(props.post)
+    }
+
+    return {
+      click
+    }
+  }
 }
 </script>
 
