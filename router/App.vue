@@ -1,7 +1,6 @@
 <template>
-  App
-  <router-view />
-  App
+  <RouterLink to="/posts">Posts</RouterLink>
+  <RouterView />
 </template>
 
 <script>
