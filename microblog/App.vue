@@ -35,18 +35,9 @@ export default {
       store.setHashtag(event.target.value)
     }
 
-    const filteredPosts = computed(() => {
-      if(!store.state.currentTag){
-        return store.state.posts
-      }
-      
-      return store.state.posts.filter(post => post.hashtags.includes(store.state.currentTag))
-      
-    })
-
     return {
-      filteredPosts,
       setHashtag,
+      filteredPosts: computed(() => store.filteredPosts),
       currentTag: computed(() => store.state.currentTag) ,
     }
   }
