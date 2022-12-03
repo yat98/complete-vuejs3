@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "router": "vite --host --config vite.config.js router",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
