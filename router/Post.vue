@@ -1,6 +1,8 @@
 <template>
-  <h2>Posts</h2>
-  <RouterView />
+  <h4>Title</h4>
+  <p>
+    Content
+  </p>
 </template>
 
 <script>
