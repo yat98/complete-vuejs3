@@ -8,12 +8,13 @@
 <script>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { testPosts } from './testPosts';
+import { usePosts } from './usePosts';
 
 export default {
   setup() {
     const route = useRoute()
-    const post = computed(() => testPosts.find(p => p.id.toString() === route.params.id))
+    const postStore = usePosts()
+    const post = computed(() => postStore.posts.value.find(p => p.id.toString() === route.params.id))
     
     return {
       post

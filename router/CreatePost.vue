@@ -11,16 +11,22 @@
 
 <script>
 import { reactive } from "vue";
+import { usePosts } from './usePosts';
 
 export default {
   setup() {
+    const postStore =  usePosts()
     const newPost = reactive({
       title: "",
       content: "",
     });
 
     const submit = () => {
-
+      postStore.addPost({
+        id: postStore.posts.value.length + 1,
+        title: newPost.title,
+        content: newPost.content,
+      })
     }
 
     return {
