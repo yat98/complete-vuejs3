@@ -1,13 +1,23 @@
 <template>
-  <h4>Title</h4>
+  <h4>{{ post.title }}</h4>
   <p>
-    Content
+    {{ post.content }}
   </p>
 </template>
 
 <script>
-export default {
+import { useRoute } from 'vue-router';
+import { testPosts } from './testPosts';
 
+export default {
+  setup() {
+    const route = useRoute()
+    const post = testPosts.find(p => p.id.toString() === route.params.id)
+    
+    return {
+      post
+    }
+  }
 }
 </script>
 

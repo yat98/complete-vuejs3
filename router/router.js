@@ -4,7 +4,7 @@ import Posts from "./Posts.vue"
 import Post from "./Post.vue"
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/hello',
