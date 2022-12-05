@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watchEffect } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -28,17 +28,13 @@ export default {
       store.dispatch('fetchPosts')
     }
 
-    const currentPost = computed(() =>
-      store.state.posts.find(post => post.id === store.state.postId)
-    )
-
     onMounted(() => {
       fetchData()
     })
 
     return {
       store,
-      currentPost,
+      currentPost: computed(() => store.getters.currentPost),
       posts: computed(() => store.state.posts),
       postId: computed(() => store.state.postId),
       click,
