@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
@@ -25,6 +25,14 @@ export default {
     const click = (post) => {
       store.commit('setPostId', post.id)
     }
+
+    const fetchData = () => {
+      store.dispatch('fetchPosts','POSTS')
+    }
+
+    onMounted(() => {
+      fetchData()
+    })
 
     return {
       store,

@@ -1,4 +1,7 @@
 import { createStore } from "vuex"
+import { testPosts } from "./testPosts"
+
+const delay = new Promise(res => setTimeout(res, 1000))
 
 export const store = createStore({
   state() {
@@ -14,6 +17,13 @@ export const store = createStore({
     },
     setPostId(state,postId){
       state.postId = postId
+    }
+  },
+
+  actions: {
+    async fetchPosts(ctx, payload) {
+      await delay
+      console.log(payload)
     }
   }
 })
