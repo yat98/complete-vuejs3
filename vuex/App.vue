@@ -6,7 +6,10 @@
   >
     {{ post.title }}  
   </button>
-  {{ postId }}
+  <div v-if="currentPost">
+    <h2>{{ currentPost.title }}</h2>
+    <p>{{ currentPost.content }}</p>
+  </div>
 </template>
 
 <script>
@@ -25,12 +28,17 @@ export default {
       store.dispatch('fetchPosts')
     }
 
+    const currentPost = computed(() =>
+      store.state.posts.find(post => post.id === store.state.postId)
+    )
+
     onMounted(() => {
       fetchData()
     })
 
     return {
       store,
+      currentPost,
       posts: computed(() => store.state.posts),
       postId: computed(() => store.state.postId),
       click,
