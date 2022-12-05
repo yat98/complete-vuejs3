@@ -5,12 +5,11 @@
     </template>
 
     <template #sidebar>
-      <div
+      <Album
         v-for="album in albums"
         :key="album.id"
-      >
-        {{ album.title }}
-      </div>
+        :album="album"
+      />
     </template>
 
     <template #content>
@@ -23,10 +22,12 @@
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
 import Layout from './Layout.vue';
+import Album from './Album.vue';
 
 export default {
   components: {
-    Layout
+    Layout,
+    Album,
   },
 
   setup() {
