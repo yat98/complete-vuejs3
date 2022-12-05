@@ -21,11 +21,11 @@ export default {
     const store = useStore()
 
     const click = (post) => {
-      store.commit('setPostId', post.id)
+      store.commit('posts/setPostId', post.id)
     }
 
     const fetchData = () => {
-      store.dispatch('fetchPosts')
+      store.dispatch('posts/fetch')
     }
 
     onMounted(() => {
@@ -34,8 +34,8 @@ export default {
 
     return {
       store,
-      currentPost: computed(() => store.getters.currentPost),
-      posts: computed(() => store.state.posts),
+      currentPost: computed(() => store.getters['posts/currentPost']),
+      posts: computed(() => store.state.posts.all),
       postId: computed(() => store.state.postId),
       click,
     }
