@@ -1,5 +1,6 @@
 <template>
   {{ store.state.count }}
+  <button @click="click">Increment</button>
 </template>
 
 <script>
@@ -11,8 +12,11 @@ export default {
 
     console.log(store)
 
+    const click = () => store.commit('increment',{  number: 10 })
+
     return {
-      store
+      store,
+      click
     }
   }
 }
