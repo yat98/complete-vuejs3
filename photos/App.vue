@@ -5,7 +5,12 @@
     </template>
 
     <template #sidebar>
-      Sidebar
+      <div
+        v-for="album in albums"
+        :key="album.id"
+      >
+        {{ album.title }}
+      </div>
     </template>
 
     <template #content>
@@ -15,11 +20,25 @@
 </template>
 
 <script>
+import { ref, onMounted } from '@vue/runtime-core';
 import Layout from './Layout.vue';
 
 export default {
   components: {
     Layout
+  },
+
+  setup() {
+    const albums = ref([])
+    onMounted(async () => {
+      const result = await window.fetch('https://jsonplaceholder.typicode.com/albums')
+      const json = await result.json()
+      albums.value = json
+    })
+
+    return {
+      albums
+    }
   }
 }
 </script>
