@@ -8,6 +8,7 @@ export const store = createStore({
     return {
       count: 0,
       postId: null,
+      posts: []
     }
   },
 
@@ -17,13 +18,16 @@ export const store = createStore({
     },
     setPostId(state,postId){
       state.postId = postId
+    },
+    setPosts(state,posts){
+      state.posts = posts
     }
   },
 
   actions: {
-    async fetchPosts(ctx, payload) {
+    async fetchPosts(ctx) {
       await delay
-      console.log(payload)
+      ctx.commit('setPosts', testPosts)
     }
   }
 })

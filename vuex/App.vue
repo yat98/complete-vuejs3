@@ -17,17 +17,12 @@ export default {
   setup() {
     const store = useStore()
 
-    const posts = [
-      { id: 1, title: 'Post #1' },
-      { id: 2, title: 'Post #2' },
-    ]
-
     const click = (post) => {
       store.commit('setPostId', post.id)
     }
 
     const fetchData = () => {
-      store.dispatch('fetchPosts','POSTS')
+      store.dispatch('fetchPosts')
     }
 
     onMounted(() => {
@@ -36,7 +31,7 @@ export default {
 
     return {
       store,
-      posts,
+      posts: computed(() => store.state.posts),
       postId: computed(() => store.state.postId),
       click,
     }
