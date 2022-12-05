@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from '@vue/runtime-core';
+import { computed, onMounted } from 'vue';
+import { useStore } from 'vuex';
 import Layout from './Layout.vue';
 
 export default {
@@ -29,12 +30,13 @@ export default {
   },
 
   setup() {
-    const albums = ref([])
-    onMounted(async () => {
-      const result = await window.fetch('https://jsonplaceholder.typicode.com/albums')
-      const json = await result.json()
-      albums.value = json
+    const store = useStore()
+
+    onMounted(() => {
+      store.dispatch('albums/fetch') 
     })
+    
+    const albums = computed(() => store.state.albums.all)
 
     return {
       albums
