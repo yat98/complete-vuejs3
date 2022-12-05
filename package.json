@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "vuex": "vite --host --config vite.config.js vuex",
+    "vuex-options": "vite --host --config vite.config.js vuex-options",
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
