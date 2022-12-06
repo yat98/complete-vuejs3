@@ -17,7 +17,6 @@ export const photos = {
     async getByAlbum(ctx, { album }) {
       const result = await window.fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${album.id}`)
       const json = await result.json()
-      console.log(json)
       ctx.commit('setPhotos', json)
     }
   },

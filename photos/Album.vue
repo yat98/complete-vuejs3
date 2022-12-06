@@ -1,36 +1,33 @@
 <template>
-  <button @click="click">
+  <RouterLink :to="`/album/${album.id}`">
     {{ album.title }}
-  </button>
+  </RouterLink>
 </template>
 
 <script>
 import { useStore } from 'vuex';
 
 export default {
-  props: {
-    album: {
-      type: Object,
-      required: true,
+    props: {
+        album: {
+            type: Object,
+            required: true,
+        },
     },
-  },
-  
-  setup(props) {
-    const store = useStore()
-
-    const click = () => {
-      store.dispatch('photos/getByAlbum', { album: props.album })
-    }
-
-    return {
-      click
-    }
-  }
+    setup(props) {
+        const store = useStore();
+        const click = () => {
+            store.dispatch("photos/getByAlbum", { album: props.album });
+        };
+        return {
+            click
+        };
+    },
 };
 </script>
 
 <style scoped>
-button {
+a {
   background: darkcyan;
   color: white;
   border: none;
@@ -45,7 +42,7 @@ button {
   text-decoration: none;
   font-family: Arial;
 }
-button:hover {
+a:hover {
   filter: brightness(120%);
   cursor: pointer;
   transition: 0.1s;
