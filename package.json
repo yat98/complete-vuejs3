@@ -4,13 +4,22 @@
   "private": true,
   "scripts": {
     "photos": "vite --host --config vite.config.js photos",
+    "vuex": "vite --host --config vite.config.js vuex",
+    "vuex-options": "vite --host --config vite.config.js vuex-options",
+    "router-options": "vite --host --config vite.config.js router-options",
+    "router": "vite --host --config vite.config.js router",
+    "microblog": "vite --host --config vite.config.js microblog",
     "dev": "vite --host",
+    "composition": "vite --host --config vite.config.js composition",
+    "pokemon": "vite --host --config vite.config.js pokemon",
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "form-validation": "vite --host --config vite.config.js form-validation/"    
   },
   "dependencies": {
+    "@vue/compiler-sfc": "^3.2.45",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6",
     "vuex": "^4.1.0"
