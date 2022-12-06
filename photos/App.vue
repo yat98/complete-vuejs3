@@ -13,7 +13,11 @@
     </template>
 
     <template #content>
-      Content
+      <img 
+        v-for="photo in photos"
+        :key="photo.id"
+        :src="photo.thumbnailUrl"
+      />
     </template>
   </Layout>
 </template>
@@ -39,8 +43,11 @@ export default {
     
     const albums = computed(() => store.state.albums.all)
 
+    const photos = computed(()  => store.state.photos.all)
+
     return {
-      albums
+      albums,
+      photos
     }
   }
 }

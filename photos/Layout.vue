@@ -18,7 +18,7 @@
 
 <style scoped>
 .wrapper {
-  height: 100vh;
+  min-height: 100vh;
 }
 .header {
   height: 50px;
@@ -29,7 +29,7 @@
   font-family: Arial;
 }
 .main {
-  height: calc(100vh - 50px);
+  min-height: calc(100vh - 50px);
   border-top: 2px solid silver;
   display: flex;
 }
