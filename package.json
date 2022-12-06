@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite --host",
+    "composition": "vite --host --config vite.config.js composition",
     "pokemon": "vite --host --config vite.config.js pokemon",
     "build": "vite build",
     "preview": "vite preview",
