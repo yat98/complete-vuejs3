@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "vuex": "vite --host --config vite.config.js vuex",
+    "vuex-options": "vite --host --config vite.config.js vuex-options",
     "router-options": "vite --host --config vite.config.js router-options",
     "router": "vite --host --config vite.config.js router",
     "microblog": "vite --host --config vite.config.js microblog",
