@@ -9,7 +9,7 @@ export const photos = {
 
   mutations: {
     setPhotos(state, photos) {
-      state.all = photos
+      state.all = photos.splice(0,100)
     }
   },
 
