@@ -9,13 +9,13 @@ export const photos = {
 
   mutations: {
     setPhotos(state, photos) {
-      state.all = photos.splice(0,100)
+      state.all = photos
     }
   },
 
   actions: {
-    async getByAlbum(ctx, { album }) {
-      const result = await window.fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${album.id}`)
+    async getByAlbum(ctx, { albumId }) {
+      const result = await window.fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
       const json = await result.json()
       ctx.commit('setPhotos', json)
     }

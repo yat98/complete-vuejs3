@@ -7,13 +7,21 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, watchEffect } from 'vue';
+import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 
 export default {
   setup() {
     const store = useStore()
-    
+    const route = useRoute()
+
+    watchEffect(() => {
+      const id = route.params.id
+      if(!id) return
+      store.dispatch("photos/getByAlbum", { albumId: id });
+    })
+
     const photos = computed(()  => store.state.photos.all)
 
     return {
